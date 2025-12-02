@@ -47,7 +47,6 @@ def main():
         url = (
             post.url
             .replace("reddit.com", "rxddit.com")
-            .replace("redd.it", "rxdd.it")
         )
 
         msg = f"**[{flair}] {post.title}**\n{url}"
