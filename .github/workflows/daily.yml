@@ -27,6 +27,6 @@ jobs:
         DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         CLIENT_ID: ${{ secrets.CLIENT_ID }}
         CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-        USER_AGENT: "dailyleaksbot/1.0"
+        USER_AGENT: ${{ secrets.USER_AGENT }}"
       run: |
-        python app/daily_leaks.py
+        python app/leaksbot.py
