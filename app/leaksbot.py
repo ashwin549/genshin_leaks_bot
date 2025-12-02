@@ -8,8 +8,8 @@ CLIENT_ID = os.getenv("CLIENT_ID")
 CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 USER_AGENT = os.getenv("USER_AGENT")
 
-# Webhook URL (user provides)
-WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
+# Multiple webhook URLs (comma-separated)
+WEBHOOK_URLS = os.getenv("DISCORD_WEBHOOK_URL").split(",")
 
 # Subreddit
 SUBREDDIT = "Genshin_Impact_Leaks"
@@ -22,7 +22,19 @@ reddit = praw.Reddit(
 )
 
 def send(content):
-    requests.post(WEBHOOK_URL, json={"content": content[:2000]})
+    """Send a message to all configured webhooks."""
+    content = content[:2000]  
+
+    for url in WEBHOOK_URLS:
+        url = url.strip()
+
+        if not url:
+            continue  
+
+        try:
+            requests.post(url, json={"content": content})
+        except Exception as e:
+            print(f"Failed to send to {url}: {e}")
 
 def main():
     now = datetime.now(timezone.utc)
@@ -40,14 +52,10 @@ def main():
             continue
 
         flair = post.link_flair_text
-        if flair not in ["Reliable", "UGC Leak"]:
+        if flair not in ALLOWED_FLAIRS:
             continue
 
-        # Rewrite reddit → rxddit
-        url = (
-            post.url
-            .replace("reddit.com", "rxddit.com")
-        )
+        url = post.url.replace("reddit.com", "rxddit.com")
 
         msg = f"**[{flair}] {post.title}**\n{url}"
         send(msg)
