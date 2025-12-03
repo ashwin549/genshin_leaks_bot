@@ -51,9 +51,9 @@ def send(content):
 
 def main():
     now = datetime.now(timezone.utc)
-    yesterday = now - timedelta(days=1)
+    twelve_hours_ago = now - timedelta(hours=12)
     
-    send(f"**Daily Genshin Leaks Report ({yesterday.date()} → {now.date()})**")
+    send(f"**Genshin Leaks Report (Last 12 Hours)**\n{twelve_hours_ago.strftime('%Y-%m-%d %H:%M UTC')} → {now.strftime('%Y-%m-%d %H:%M UTC')}")
     
     count = 0
     subreddit = reddit.subreddit(SUBREDDIT)
@@ -61,7 +61,7 @@ def main():
     for post in subreddit.new(limit=100):
         post_time = datetime.fromtimestamp(post.created_utc, tz=timezone.utc)
         
-        if post_time < yesterday:
+        if post_time < twelve_hours_ago:
             continue
         
         flair = post.link_flair_text
@@ -74,7 +74,7 @@ def main():
         count += 1
     
     if count == 0:
-        send("No new Reliable / UGC Leak posts today.")
+        send("No new Reliable / UGC Leak posts in the last 12 hours.")
     else:
         send(f"Done! Sent {count} leak posts.")
 
