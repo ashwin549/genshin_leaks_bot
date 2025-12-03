@@ -2,7 +2,7 @@ name: Daily Genshin Leak Sender
 
 on:
   schedule:
-    - cron: "0 2 * * *"   # Runs daily at 02:00 UTC
+    - cron: "0 3 * * *"   # Runs daily at 02:00 UTC
   workflow_dispatch:       # Allows manual testing
 
 jobs:
@@ -27,6 +27,6 @@ jobs:
         DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         CLIENT_ID: ${{ secrets.CLIENT_ID }}
         CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-        USER_AGENT: ${{ secrets.USER_AGENT }}"
+        USER_AGENT: ${{ secrets.USER_AGENT }}
       run: |
         python app/leaksbot.py
