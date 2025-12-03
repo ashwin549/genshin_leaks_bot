@@ -2,7 +2,7 @@ name: Daily Genshin Leak Sender
 
 on:
   schedule:
-    - cron: "0 3 * * *"   # Runs daily at 02:00 UTC
+    - cron: "*/10 * * * *"   # Every 10 minutes for testing 
   workflow_dispatch:       # Allows manual testing
 
 jobs:
