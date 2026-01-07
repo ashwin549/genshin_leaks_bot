@@ -14,7 +14,7 @@ WEBHOOK_URLS = os.getenv("DISCORD_WEBHOOK_URL").split(",")
 
 # Subreddit
 SUBREDDIT = "Genshin_Impact_Leaks"
-ALLOWED_FLAIRS = ["Reliable", "UGC Leak"]
+ALLOWED_FLAIRS = ["Reliable", "UGC Official", "UGC Leak", "Official"]
 
 reddit = praw.Reddit(
     client_id=CLIENT_ID,
