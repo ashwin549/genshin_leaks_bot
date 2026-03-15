@@ -51,7 +51,7 @@ def send(content):
 
 def main():
     now = datetime.now(timezone.utc)
-    twelve_hours_ago = now - timedelta(hours=12)
+    twelve_hours_ago = now - timedelta(days=12)
     
     send(f"**Genshin Leaks Report (Last 12 Hours)**\n{twelve_hours_ago.strftime('%Y-%m-%d %H:%M UTC')} → {now.strftime('%Y-%m-%d %H:%M UTC')}")
     
