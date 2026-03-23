@@ -11,6 +11,8 @@ Automatically sends reliable leaks from r/Genshin_Impact_Leaks to Discord every 
 
 ## Quick Setup
 
+Note: If you do not wish to set this up yourself, you can also mail me yoir discord webhook url (refer step 2 of setup), and i will add it to this bot when im free.
+
 ### 1. Get Reddit API Credentials
 
 1. Go to https://www.reddit.com/prefs/apps
