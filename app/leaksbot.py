@@ -68,7 +68,7 @@ def main():
         if flair not in ALLOWED_FLAIRS:
             continue
         
-        url = post.url.replace("reddit.com", "rxddit.com")
+        url = post.url.replace("reddit.com", "vxreddit.com")
         msg = f"**[{flair}] {post.title}**\n{url}"
         send(msg)
         count += 1
